@@ -7,11 +7,14 @@ Test = function()
 	
 	self.init = function(){
 		self.mem = new Mem("127.0.0.1:11211");
-		self.testSet();
+		self.control("init()::done");
 	},
 	
-	self.control = function(event){
-		switch(event){
+	self.control = function(msg){
+		switch(msg){
+			case "init()::done":
+				self.testSet();
+				break;
 			case "testSet()::done":
 				self.testRead();
 				break;
@@ -22,10 +25,9 @@ Test = function()
 	},
 	
 	self.testSet = function(){
-		self.mem.set("foo", "bar", 10, function(err, res){
+		self.mem.set("foo", "bar", 1, function(err, res){
 			if(err){ self.log(err); }
 			if(res){
-				self.log(res);
 				self.control("testSet()::done");
 			}
 		});
@@ -53,3 +55,5 @@ Test = function()
 
 test = new Test();
 test.init();
+
+// :: Mann, mann mann... 
