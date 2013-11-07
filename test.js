@@ -5,7 +5,8 @@ Test = function()
 	self = this;
 	self.mem = null;
 	
-	self.init = function(){
+	self.init = function(quit){
+		self.quit = null == quit ? self.quit : quit;
 		self.mem = new Mem("127.0.0.1:11211");
 		self.control("init()::done");
 	},
@@ -54,6 +55,6 @@ Test = function()
 }
 
 test = new Test();
-test.init();
 
-// :: Mann, mann mann... 
+// test.init(function(){ console.log("i will not quit"); });
+test.init();
