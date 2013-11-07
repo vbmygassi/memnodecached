@@ -39,7 +39,7 @@ Test = function()
 			if(res){
 				self.log(res);
 				self.control("testRead()::done");
-			} 
+			}
 		});
 	},
 	
