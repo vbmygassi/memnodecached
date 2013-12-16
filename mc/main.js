@@ -1,16 +1,17 @@
-Server = function()
+NokedliMaster = function()
 {
-	Ex = require("express");
+	Exp = require("express");
 	Mem = require("memcached");
 	
 	self = this;
+	
 	self.mem = null;
 	self.app = null;
 	
 	self.init = function(){
 		self.mem = new Mem("127.0.0.1:11211");	
 		console.log("connected to memcached at: 127.0.0.1:11211");
-		self.app = new Ex();
+		self.app = new Exp();
 		self.app.get("/test", function(req, res){
 			res.send("test()");	
 		});
@@ -23,10 +24,12 @@ Server = function()
 		self.app.listen(3000);
 		console.log("listening on 127.0.0.1:3000");
 	}
-
-	
 }	
 
+nm = new NokedliMaster();
+nm.init();
+
+/*
 Test = function()
 {
 	Mem = require("memcached");
@@ -82,10 +85,9 @@ Test = function()
 		process.exit();
 	}
 }
+*/
 
 // test = new Test();
 // test.init(function(){ console.log("i will not quit"); });
 // test.init();
 
-s = new Server();
-s.init();
