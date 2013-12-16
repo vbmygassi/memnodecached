@@ -1,0 +1,14 @@
+{
+	"name": "nok-mem",
+	"description": "nokedli test memcached instance",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"memcached": "x.x",
+		"express": "x.x"
+	},
+	"engines": {
+		"node": "0.10.x",
+		"npm": "1.x"
+	}
+}
