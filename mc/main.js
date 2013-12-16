@@ -8,16 +8,18 @@ NokedliMaster = function()
 	self.mem = null;
 	self.app = null;
 	
-	self.init = function(){
-		
+	self.init = function()
+	{
+		// todo: errorhandling etc....
 		self.mem = new Mem("127.0.0.1:11211");	
-		
 		console.log("connected to memcached at: 127.0.0.1:11211");
 		
 		self.app = new Exp();
 		
-		self.app.get("/pull/:id", function(req, res){
-			self.mem.get("id", function(err, rec){
+		self.app.get("/pull/:id", function(req, res)
+		{
+			self.mem.get(req.params.id, function(err, rec)
+			{
 				if(err){
 					console.log("get():err:" +err);
 				};
@@ -28,8 +30,10 @@ NokedliMaster = function()
 			res.send("pull():" +req.params.id);
 		});
 		
-		self.app.get("/push/:id", function(req, res){
-			self.mem.set("id", "value", 10, function(err, stat){
+		self.app.get("/push/:id", function(req, res)
+		{
+			self.mem.set(req.params.id, "value", 10, function(err, stat)
+			{
 				if(err){
 					console.log("set():err:" +err);
 				}
